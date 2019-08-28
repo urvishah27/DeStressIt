@@ -155,7 +155,7 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this,user.getDisplayName(),Toast.LENGTH_SHORT).show();
             PreferenceUtil.setString(this,"uname",user.getDisplayName());
             PreferenceUtil.setString(this,"uemail",user.getEmail());
-            startActivity(new Intent(getApplicationContext(),Dashboard.class));
+            startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
         }
     }
 
@@ -271,7 +271,7 @@ public class RegistrationActivity extends AppCompatActivity {
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Dashboard.class));
+                Toast.makeText(getApplicationContext(),"Start Detection - Coming Up Soon", Toast.LENGTH_LONG).show();
             }
         });
         Button declineButton = (Button) dialogView.findViewById(R.id.decline);
