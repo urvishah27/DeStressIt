@@ -64,4 +64,10 @@ public class NavigationActivity extends AppCompatActivity implements ProfileFrag
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+    }
 }

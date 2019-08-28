@@ -44,6 +44,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
 
     GenericUtils genericUtils = new GenericUtils();
+    boolean newUser = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,11 +156,15 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this,user.getDisplayName(),Toast.LENGTH_SHORT).show();
             PreferenceUtil.setString(this,"uname",user.getDisplayName());
             PreferenceUtil.setString(this,"uemail",user.getEmail());
-            startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
+            if(newUser)
+                startActivity(new Intent(getApplicationContext(),RegisterAsActivity.class));
+            else
+                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
         }
     }
 
     public void createAccountClick(View v) {
+        newUser = true;
         createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
     }
 
@@ -224,6 +229,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
     // [END onactivityresult]
 
+    // TODO: sign up with google - register as
     // [START auth_with_google]
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
