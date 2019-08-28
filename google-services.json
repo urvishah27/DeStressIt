@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "755761428418",
+    "firebase_url": "https://destressit-1566811100805.firebaseio.com",
+    "project_id": "destressit-1566811100805",
+    "storage_bucket": "destressit-1566811100805.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755761428418:android:07f00065481a70c7",
+        "android_client_info": {
+          "package_name": "com.example.destressit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755761428418-ou6u6htp3jdctlnk8dd9rcm8j2q4sgck.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.destressit",
+            "certificate_hash": "46e09ed77800acc5936acc78e269e7e4678fef35"
+          }
+        },
+        {
+          "client_id": "755761428418-fvh0qnertb87b330ria3eo8cljgfi6jg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjq1ccqHJwFRFeuJ5HOylc2kh-FAZNRX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755761428418-fvh0qnertb87b330ria3eo8cljgfi6jg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

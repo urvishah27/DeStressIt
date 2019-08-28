@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_dashboard" />
+
+
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_local_hospital_black_24dp"
+        android:title="@string/title_therapist" />
+
+    <item
+        android:id="@+id/navigation_home"
+        android:layout_height="match_parent"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="@string/title_profile" />
+
+</menu>
