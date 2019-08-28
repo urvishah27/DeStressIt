@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".RegistrationActivity">
 
+    <LinearLayout
+        android:id="@+id/MyLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_linear_white" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/fieldEmail"
@@ -18,17 +31,6 @@
         android:hint="Enter your Email"
         android:inputType="textEmailAddress"
          />
-
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="153dp"
-        android:text="Sign Up"
-
-        android:textSize="36sp" />
 
     <EditText
         android:id="@+id/fieldPassword"
@@ -47,20 +49,27 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/fieldPassword"
         android:weightSum="1"
+        android:paddingHorizontal="10dp"
         android:layout_marginTop="50dp">
 
     <Button
         android:id="@+id/emailCreateAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:onClick="createAccountClick"
+        android:background="@drawable/background"
+        android:layout_marginEnd="10dp"
         android:layout_weight="0.5"
         android:text="Create New Account" />
+
 
     <Button
         android:id="@+id/emailSignInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/background"
+        android:textColor="@color/white"
         android:layout_weight="0.5"
         android:onClick="signInClick"
         android:text="Sign In" />
