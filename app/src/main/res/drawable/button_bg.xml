@@ -4,13 +4,13 @@
     <item>
         <shape>
             <corners
-                android:radius="50pt">
+                android:radius="100pt">
             </corners>
 
             <padding android:bottom="3dp"
-                     android:left="3dp"
-                     android:right="3dp"
-                     android:top="3dp">
+                android:left="3dp"
+                android:right="3dp"
+                android:top="3dp">
             </padding>
 
             <gradient android:angle="180"
