@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "755761428418-12se5ji217cjnrbvnr07huibh9l9usuq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.destressit",
+            "certificate_hash": "1577424a3cb9a94aecd18609209598adb2a6ec62"
+          }
+        },
+        {
+          "client_id": "755761428418-5dnarkrauq22mjtkl0v7vu2qtu9q7kd5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.destressit",
+            "certificate_hash": "646279d52ae67e3ebf7a730b3e62b886483b1674"
+          }
+        },
+        {
           "client_id": "755761428418-ou6u6htp3jdctlnk8dd9rcm8j2q4sgck.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
