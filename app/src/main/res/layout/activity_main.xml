@@ -7,6 +7,14 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/MyLayout1"
         android:layout_width="match_parent"
@@ -50,4 +58,6 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
+</RelativeLayout>
+</ScrollView>
 </RelativeLayout>

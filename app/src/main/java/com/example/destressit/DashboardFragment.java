@@ -1,6 +1,7 @@
 package com.example.destressit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -89,8 +90,9 @@ public class DashboardFragment extends Fragment {
 
         getView().findViewById(R.id.startDetection).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"Coming Soon",Toast.LENGTH_LONG).show();
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), Questionnaire.class);
+                startActivity(i);
             }
         });
     }
