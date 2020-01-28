@@ -50,7 +50,6 @@ public class VideoDetection extends Activity implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        mCamera.setDisplayOrientation(90);
     }
 
     @Override

@@ -15,6 +15,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_BACK;
@@ -66,6 +69,7 @@ public class RecorderService extends Service {
             Toast.makeText(getBaseContext(), "Recording Started", Toast.LENGTH_SHORT).show();
 
             mServiceCamera = Camera.open(CAMERA_FACING_FRONT);
+            mServiceCamera.setDisplayOrientation(90);
             Camera.Parameters params = mServiceCamera.getParameters();
             mServiceCamera.setParameters(params);
             Camera.Parameters p = mServiceCamera.getParameters();
@@ -91,6 +95,9 @@ public class RecorderService extends Service {
 
             mServiceCamera.unlock();
 
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmmssddMMYY");
+            LocalDateTime now = LocalDateTime.now();
+
             mMediaRecorder = new MediaRecorder();
             mMediaRecorder.setCamera(mServiceCamera);
             mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -98,7 +105,7 @@ public class RecorderService extends Service {
             mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
             mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-            mMediaRecorder.setOutputFile(Environment.getExternalStorageDirectory().getPath() + "/video.mp4");
+            mMediaRecorder.setOutputFile(Environment.getExternalStorageDirectory().getPath() + "/"+dtf.format(now)+".mp4");
 //            mMediaRecorder.setPreviewDisplay(mSurfaceHolder.getSurface());
 
             mMediaRecorder.prepare();
