@@ -78,8 +78,8 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-
         mAuth = FirebaseAuth.getInstance();
+
     }
 
     // [START on_start_check_user]
@@ -170,6 +170,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void signInClick(View v){
         signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+
     }
 
     private void signIn(String email, String password) {
