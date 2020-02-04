@@ -90,8 +90,9 @@ public class DashboardFragment extends Fragment {
 
         getView().findViewById(R.id.startDetection).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(),VideoDetection.class));
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), Questionnaire.class);
+                startActivity(i);
             }
         });
     }
