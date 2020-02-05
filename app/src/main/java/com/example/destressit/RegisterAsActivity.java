@@ -28,7 +28,12 @@ public class RegisterAsActivity extends AppCompatActivity {
         selectedButton = (RadioButton) findViewById(selectedId);
         Toast.makeText(this,selectedButton.getText().toString(),Toast.LENGTH_LONG).show();
         PreferenceUtil.setString(this,"utype",selectedButton.getText().toString());
-        startActivity(new Intent(this,NavigationActivity.class));
+        if(selectedButton.getText().toString()=="User") {
+            startActivity(new Intent(this, NavigationActivity.class));
+        }
+        else{
+            startActivity(new Intent(this, therapistdashboard.class));
+        }
     }
 
 }

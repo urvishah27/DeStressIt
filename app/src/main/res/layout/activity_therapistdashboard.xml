@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".therapistdashboard">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="70dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Appointment Request"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp">
+
+                <!--<RelativeLayout
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/destressit4"
+                        android:layout_alignParentLeft="true"/>
+
+                </RelativeLayout>-->
+
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Name: Pratishtha Trivedi"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Language: English, Hindi"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Stress Level: Low"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/myButton1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_bg"
+                            android:text="View Report"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                        <Button
+                            android:id="@+id/myButton2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_bg"
+                            android:onClick="onclick"
+                            android:text="Contact"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</ScrollView>
