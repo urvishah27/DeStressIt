@@ -43,7 +43,7 @@ public class TherapistsFragment extends Fragment {
      * @return A new instance of fragment TherapistsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TherapistsFragment newInstance(String param1, String param2) {
+    private static TherapistsFragment newInstance(String param1, String param2) {
         TherapistsFragment fragment = new TherapistsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
