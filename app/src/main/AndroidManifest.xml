@@ -12,6 +12,7 @@
         android:name="android.hardware.camera"
         android:required="true" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,7 +27,9 @@
 
         <activity android:name=".VideoDetection" />
         <activity android:name=".Questionnaire"></activity>
-        <activity android:name=".therapistdashboard"></activity>
+        <activity
+            android:name=".TherapistsNavActivity"
+            android:label="@string/title_activity_therapists_nav"></activity>
         <activity android:name=".RegisterAsActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".RegistrationActivity" />
