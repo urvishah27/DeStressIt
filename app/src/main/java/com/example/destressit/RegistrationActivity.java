@@ -45,6 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     GenericUtils genericUtils = new GenericUtils();
     boolean newUser = false;
+    String type = "User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        type = PreferenceUtil.getString(this,"utype");
         updateUI(currentUser);
     }
     // [END on_start_check_user]
@@ -158,8 +160,11 @@ public class RegistrationActivity extends AppCompatActivity {
             PreferenceUtil.setString(this,"uemail",user.getEmail());
             if(newUser)
                 startActivity(new Intent(getApplicationContext(),RegisterAsActivity.class));
-            else
+            else if(type.equals("User"))
                 startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
+            else{
+                startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
+            }
         }
     }
 
@@ -243,6 +248,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            newUser = task.getResult().getAdditionalUserInfo().isNewUser();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.

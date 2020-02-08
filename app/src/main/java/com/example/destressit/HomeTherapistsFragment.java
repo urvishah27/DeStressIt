@@ -39,46 +39,48 @@ public class HomeTherapistsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        contact=(Button)root.findViewById(R.id.myButton2);
-    }
-
-    public void onclick(View view){
-        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
-        builder.setCancelable(false);
-        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
-        builder.setView(dialogView);
-        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
-        textView.setText("How do you want to contact?");
-        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
-        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
-        acceptButton.setText("Email");
-        final AlertDialog alertDialog = builder.create();
-        acceptButton.setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.myButton2).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_SEND);
-                String[] recipients={"mailto@gmail.com"};
-                intent.putExtra(Intent.EXTRA_EMAIL, recipients);
-                intent.putExtra(Intent.EXTRA_SUBJECT,"Reply to report");
-                intent.setType("text/html");
-                intent.setPackage("com.google.android.gm");
-                startActivity(Intent.createChooser(intent, "Send mail"));
-                alertDialog.dismiss();
+            public void onClick(View view) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+            builder.setCancelable(false);
+            inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+            builder.setView(dialogView);
+            TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+            textView.setText("How do you want to contact?");
+            dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+            Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+            acceptButton.setText("Email");
+            final AlertDialog alertDialog = builder.create();
+            acceptButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(Intent.ACTION_SEND);
+                    String[] recipients={"mailto@gmail.com"};
+                    intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+                    intent.putExtra(Intent.EXTRA_SUBJECT,"Reply to report");
+                    intent.setType("text/html");
+                    intent.setPackage("com.google.android.gm");
+                    startActivity(Intent.createChooser(intent, "Send mail"));
+                    alertDialog.dismiss();
+                }
+            });
+            Button declineButton = (Button) dialogView.findViewById(R.id.decline);
+            declineButton.setText("Call");
+
+            declineButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    makecall();
+                    alertDialog.dismiss();
+                }
+            });
+            alertDialog.show();
             }
         });
-        Button declineButton = (Button) dialogView.findViewById(R.id.decline);
-        declineButton.setText("Call");
-
-        declineButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makecall();
-                alertDialog.dismiss();
-            }
-        });
-        alertDialog.show();
     }
+
     private void makecall() {
         if (ContextCompat.checkSelfPermission(getContext(),
                 Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
