@@ -32,9 +32,8 @@ public class RegisterAsActivity extends AppCompatActivity {
             startActivity(new Intent(this, NavigationActivity.class));
         }
         else{
-            startActivity(new Intent(this, therapistdashboard.class));
+            startActivity(new Intent(this, TherapistsNavActivity.class));
         }
     }
 
 }
-

@@ -30,8 +30,10 @@
             android:exported="true" />
 
         <activity android:name=".VideoDetection" />
-        <activity android:name=".Questionnaire" />
-        <activity android:name=".therapistdashboard" />
+        <activity android:name=".Questionnaire"></activity>
+        <activity
+            android:name=".TherapistsNavActivity"
+            android:label="@string/title_activity_therapists_nav"></activity>
         <activity android:name=".RegisterAsActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".RegistrationActivity" />
