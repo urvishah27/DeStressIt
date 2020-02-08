@@ -47,6 +47,8 @@ public class RegistrationActivity extends AppCompatActivity {
     boolean newUser = false;
     String type = "User";
 
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +81,8 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-
         mAuth = FirebaseAuth.getInstance();
+
     }
 
     // [START on_start_check_user]
@@ -158,12 +160,11 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this,user.getDisplayName(),Toast.LENGTH_SHORT).show();
             PreferenceUtil.setString(this,"uname",user.getDisplayName());
             PreferenceUtil.setString(this,"uemail",user.getEmail());
+            String type = databaseHelper.getType(user.getEmail());
             if(newUser)
                 startActivity(new Intent(getApplicationContext(),RegisterAsActivity.class));
-            else if(type.equals("User"))
-                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
             else{
-                startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
+                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
             }
         }
     }
@@ -175,6 +176,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void signInClick(View v){
         signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+
     }
 
     private void signIn(String email, String password) {

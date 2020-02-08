@@ -15,6 +15,7 @@ public class RegisterAsActivity extends AppCompatActivity {
 
     RadioGroup radioGroup;
     RadioButton selectedButton;
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,13 @@ public class RegisterAsActivity extends AppCompatActivity {
         selectedButton = (RadioButton) findViewById(selectedId);
         Toast.makeText(this,selectedButton.getText().toString(),Toast.LENGTH_LONG).show();
         PreferenceUtil.setString(this,"utype",selectedButton.getText().toString());
-        if(selectedButton.getText().toString()=="User") {
-            startActivity(new Intent(this, NavigationActivity.class));
-        }
-        else{
-            startActivity(new Intent(this, TherapistsNavActivity.class));
+        if(selectedButton.getText().toString().equals("1")){
+            databaseHelper.addUser(PreferenceUtil.getString(this,"uname"),PreferenceUtil.getString(this,"uemail"),null);
+            startActivity(new Intent(this,NavigationActivity.class));
+        }else{
+            databaseHelper.addTherapist(PreferenceUtil.getString(this,"uname"),PreferenceUtil.getString(this,"uemail"));
+            startActivity(new Intent(this,TherapistsNavActivity.class));
+
         }
     }
 

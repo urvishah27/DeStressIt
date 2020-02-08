@@ -85,6 +85,11 @@ public class HomeTherapistsFragment extends Fragment {
         if (ContextCompat.checkSelfPermission(getContext(),
                 Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL);
+            if(ContextCompat.checkSelfPermission(getContext(),
+                    Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
+                String dial="tel:7506086775";
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            }
         }
         else{
             String dial="tel:7506086775";
