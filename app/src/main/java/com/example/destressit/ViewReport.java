@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
+
+import java.util.Observable;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 public class ViewReport extends AppCompatActivity {
 

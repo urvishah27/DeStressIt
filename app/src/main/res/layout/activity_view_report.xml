@@ -22,15 +22,15 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="269dp"
-        android:layout_height="123dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="300dp"
         android:fontFamily="sans-serif-smallcaps"
         android:fontWeight="50"
         android:text="YOUR STRESS LEVEL IS "
         android:textAlignment="center"
-        android:textSize="25dp" />
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/next"
@@ -47,5 +47,38 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="232dp"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="596dp"
+        android:max="100"
+        android:progress="25"
+        android:progressBackgroundTint="#F5F7EDED"
+        android:progressTint="#00BCD4" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="203dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="89dp"
+        android:layout_height="31dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="324dp"
+        android:text="TextView" />
 
 </RelativeLayout>
