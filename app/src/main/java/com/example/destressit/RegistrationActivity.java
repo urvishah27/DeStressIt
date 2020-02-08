@@ -46,6 +46,8 @@ public class RegistrationActivity extends AppCompatActivity {
     GenericUtils genericUtils = new GenericUtils();
     boolean newUser = false;
 
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,6 +158,7 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this,user.getDisplayName(),Toast.LENGTH_SHORT).show();
             PreferenceUtil.setString(this,"uname",user.getDisplayName());
             PreferenceUtil.setString(this,"uemail",user.getEmail());
+            String type = databaseHelper.getType(user.getEmail());
             if(newUser)
                 startActivity(new Intent(getApplicationContext(),RegisterAsActivity.class));
             else

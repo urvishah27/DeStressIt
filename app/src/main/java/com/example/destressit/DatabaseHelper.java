@@ -3,6 +3,8 @@ package com.example.destressit;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.destressit.core.PreferenceUtil;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,6 +19,8 @@ public class DatabaseHelper {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     Context context;
+    String type;
+
 
     public DatabaseHelper(Context context){
         this.context = context;
@@ -25,6 +29,7 @@ public class DatabaseHelper {
     public void addUser(String uname, String uemail, String uphone){
 
         DatabaseReference dbref = database.getReference("/users");
+        DatabaseReference dbMap = database.getReference("/map");
         DatabaseReference newUser = dbref.push();
         String key = newUser.getKey();
 
@@ -32,10 +37,14 @@ public class DatabaseHelper {
         result.put("uname", uname);
         result.put("uemail", uemail);
         result.put("uphone", uphone);
-        result.put("stressPercent",null);
+
+        HashMap<String, Object> result1 = new HashMap<>();
+        result.put("email", uemail);
+        result.put("type", "user");
 
         PreferenceUtil.setString(context,"KEY",key);
 
+        dbMap.child(key).updateChildren(result1);
         dbref.child(key).updateChildren(result);
 
     }
@@ -59,6 +68,7 @@ public class DatabaseHelper {
     public void addTherapist(String uname, String uemail){
 
         DatabaseReference dbref = database.getReference("/therapists");
+        DatabaseReference dbMap = database.getReference("/map");
         DatabaseReference newUser = dbref.push();
         String key = newUser.getKey();
 
@@ -66,8 +76,13 @@ public class DatabaseHelper {
         result.put("tname", uname);
         result.put("temail", uemail);
 
+        HashMap<String, Object> result1 = new HashMap<>();
+        result.put("email", uemail);
+        result.put("type", "therapist");
+
         PreferenceUtil.setString(context,"KEY",key);
 
+        dbMap.child(key).updateChildren(result1);
         dbref.child(key).updateChildren(result);
 
     }
@@ -84,8 +99,30 @@ public class DatabaseHelper {
     }
 
     public String getTKey(){
-        return "1";
+        return "2";
 //        return PreferenceUtil.getString(context,"KEY");
+    }
+
+    public String getType(final String email){
+        DatabaseReference dbref = database.getReference("users/");
+        dbref.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> keyChildren = dataSnapshot.getChildren();
+                for (DataSnapshot key : keyChildren) {
+                    if(key.child("email").getValue()==email){
+                        type = (String) key.child("type").getValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return type;
     }
 
 }
