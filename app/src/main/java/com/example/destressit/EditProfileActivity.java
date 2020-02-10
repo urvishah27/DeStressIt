@@ -37,26 +37,49 @@ public class EditProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.emailEdit);
         phone = findViewById(R.id.phoneEdit);
 
-        DatabaseReference dbref = database.getReference("users/" + dbHelp.getUKey());
+        String type = PreferenceUtil.getString(this,"utype");
+        if(type.equalsIgnoreCase("user")){
+            DatabaseReference dbref = database.getReference("users/" + dbHelp.getUKey());
+            dbref.addValueEventListener(new ValueEventListener() {
 
-        dbref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    DataSnapshot dname = dataSnapshot.child("uname");
+                    DataSnapshot demail = dataSnapshot.child("uemail");
+                    DataSnapshot dphone = dataSnapshot.child("uphone");
 
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                DataSnapshot dname = dataSnapshot.child("uname");
-                DataSnapshot demail = dataSnapshot.child("uemail");
-                DataSnapshot dphone = dataSnapshot.child("uphone");
+                    name.setText(dname.getValue(String.class));
+                    email.setText(demail.getValue(String.class));
+                    phone.setText(dphone.getValue(String.class));
+                }
 
-                name.setText(dname.getValue(String.class));
-                email.setText(demail.getValue(String.class));
-                phone.setText(dphone.getValue(String.class));
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+        } else {
+            DatabaseReference dbref = database.getReference("therapists/" + dbHelp.getTKey());
+            dbref.addValueEventListener(new ValueEventListener() {
 
-            }
-        });
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    DataSnapshot dname = dataSnapshot.child("tname");
+                    DataSnapshot demail = dataSnapshot.child("temail");
+                    DataSnapshot dphone = dataSnapshot.child("tphone");
+
+                    name.setText(dname.getValue(String.class));
+                    email.setText(demail.getValue(String.class));
+                    phone.setText(dphone.getValue(String.class));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
 
     }
 

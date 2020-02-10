@@ -178,6 +178,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String currentuser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
                             type = dataSnapshot.child(currentuser).child("type").getValue().toString();
+                            PreferenceUtil.setString(getApplicationContext(),"utype",type);
                             Log.d("TAG","Check2: " + type);
 
                             if(type.equalsIgnoreCase("user")){
