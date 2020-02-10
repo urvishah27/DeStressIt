@@ -6,6 +6,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.destressit.core.PreferenceUtil;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onclick(View view){
         Intent i = new Intent(this,RegistrationActivity.class);
+//        PreferenceUtil.clearAllPreferences(this);
         startActivity(i);
     }
 }

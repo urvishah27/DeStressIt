@@ -62,6 +62,11 @@ public class DatabaseHelper {
         dbref.updateChildren(result);
     }
 
+    public void getGender(String gender){
+        DatabaseReference dbref = database.getReference("/users/" + getUKey());
+        dbref.child("gender").setValue(gender);
+    }
+
     public String getUKey(){
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
