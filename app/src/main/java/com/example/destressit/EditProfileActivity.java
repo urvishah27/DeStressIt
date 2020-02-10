@@ -39,7 +39,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
         DatabaseReference dbref = database.getReference("users/" + dbHelp.getUKey());
 
-
         dbref.addValueEventListener(new ValueEventListener() {
 
             @Override

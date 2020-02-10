@@ -29,7 +29,7 @@ public class RegisterAsActivity extends AppCompatActivity {
         selectedButton = (RadioButton) findViewById(selectedId);
         Toast.makeText(this,selectedButton.getText().toString(),Toast.LENGTH_LONG).show();
         PreferenceUtil.setString(this,"utype",selectedButton.getText().toString());
-        if(selectedButton.getText().toString().equals("1")){
+        if(selectedButton.getText().toString().equals("User")){
             databaseHelper.addUser(PreferenceUtil.getString(this,"uname"),PreferenceUtil.getString(this,"uemail"),null);
             startActivity(new Intent(this,NavigationActivity.class));
         }else{

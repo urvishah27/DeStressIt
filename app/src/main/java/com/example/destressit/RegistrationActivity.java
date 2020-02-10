@@ -31,6 +31,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -45,7 +52,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     GenericUtils genericUtils = new GenericUtils();
     boolean newUser = false;
-    String type = "User";
+    String type;
 
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
@@ -91,7 +98,6 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        type = PreferenceUtil.getString(this,"utype");
         updateUI(currentUser);
     }
     // [END on_start_check_user]
@@ -160,12 +166,46 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this,user.getDisplayName(),Toast.LENGTH_SHORT).show();
             PreferenceUtil.setString(this,"uname",user.getDisplayName());
             PreferenceUtil.setString(this,"uemail",user.getEmail());
-            String type = databaseHelper.getType(user.getEmail());
             if(newUser)
                 startActivity(new Intent(getApplicationContext(),RegisterAsActivity.class));
             else{
-                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
+                type = PreferenceUtil.getString(this,"utype");
+                Log.d("TAG","Check1: " + type);
+                if(type.equals("")){
+                    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("map/");
+                    dbref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String currentuser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+                            type = dataSnapshot.child(currentuser).child("type").getValue().toString();
+                            Log.d("TAG","Check2: " + type);
+
+                            if(type.equalsIgnoreCase("user")){
+                                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
+                            } else if (type.equalsIgnoreCase("therapist")){
+                                startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
+                            } else {
+                                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                } else{
+                    if(type.equalsIgnoreCase("user")){
+                        startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
+                    } else if (type.equalsIgnoreCase("Therapist")){
+                        startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
+
         }
     }
 

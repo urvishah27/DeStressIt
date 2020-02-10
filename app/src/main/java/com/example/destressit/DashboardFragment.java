@@ -86,7 +86,7 @@ public class DashboardFragment extends Fragment {
         mViewPager1.setAdapter(adapterView1);
 
         TextView msg = (TextView) getView().findViewById(R.id.message);
-        msg.setText("Hello " + PreferenceUtil.getString(getContext(),"uname"));
+        msg.setText("Hello");
 
         getView().findViewById(R.id.startDetection).setOnClickListener(new View.OnClickListener() {
             @Override

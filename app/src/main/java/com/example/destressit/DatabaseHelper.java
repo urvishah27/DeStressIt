@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.destressit.core.PreferenceUtil;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class DatabaseHelper {
 
@@ -28,10 +30,10 @@ public class DatabaseHelper {
 
     public void addUser(String uname, String uemail, String uphone){
 
+        String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         DatabaseReference dbref = database.getReference("/users");
         DatabaseReference dbMap = database.getReference("/map");
-        DatabaseReference newUser = dbref.push();
-        String key = newUser.getKey();
 
         HashMap<String, Object> result = new HashMap<>();
         result.put("uname", uname);
@@ -39,13 +41,13 @@ public class DatabaseHelper {
         result.put("uphone", uphone);
 
         HashMap<String, Object> result1 = new HashMap<>();
-        result.put("email", uemail);
-        result.put("type", "user");
+        result1.put("email", uemail);
+        result1.put("type", "user");
 
-        PreferenceUtil.setString(context,"KEY",key);
+        PreferenceUtil.setString(context,"KEY",currentuser);
 
-        dbMap.child(key).updateChildren(result1);
-        dbref.child(key).updateChildren(result);
+        dbMap.child(currentuser).updateChildren(result1);
+        dbref.child(currentuser).updateChildren(result);
 
     }
 
@@ -61,29 +63,28 @@ public class DatabaseHelper {
     }
 
     public String getUKey(){
-        return "1";
-//        return PreferenceUtil.getString(context,"KEY");
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     public void addTherapist(String uname, String uemail){
 
         DatabaseReference dbref = database.getReference("/therapists");
         DatabaseReference dbMap = database.getReference("/map");
-        DatabaseReference newUser = dbref.push();
-        String key = newUser.getKey();
+        String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
         HashMap<String, Object> result = new HashMap<>();
         result.put("tname", uname);
         result.put("temail", uemail);
 
         HashMap<String, Object> result1 = new HashMap<>();
-        result.put("email", uemail);
-        result.put("type", "therapist");
+        result1.put("email", uemail);
+        result1.put("type", "therapist");
 
-        PreferenceUtil.setString(context,"KEY",key);
+        PreferenceUtil.setString(context,"KEY",currentuser);
 
-        dbMap.child(key).updateChildren(result1);
-        dbref.child(key).updateChildren(result);
+        dbMap.child(currentuser).updateChildren(result1);
+        dbref.child(currentuser).updateChildren(result);
 
     }
 
@@ -99,30 +100,27 @@ public class DatabaseHelper {
     }
 
     public String getTKey(){
-        return "2";
-//        return PreferenceUtil.getString(context,"KEY");
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-    public String getType(final String email){
-        DatabaseReference dbref = database.getReference("users/");
-        dbref.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> keyChildren = dataSnapshot.getChildren();
-                for (DataSnapshot key : keyChildren) {
-                    if(key.child("email").getValue()==email){
-                        type = (String) key.child("type").getValue();
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        return type;
-    }
+//    public String getType(final String email){
+//        DatabaseReference dbref = database.getReference("map/");
+//        dbref.addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                String currentuser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+//                type = dataSnapshot.child(currentuser).child("type").getValue().toString();
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//        return type;
+//    }
 
 }
