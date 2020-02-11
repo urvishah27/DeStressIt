@@ -1,4 +1,4 @@
-package com.example.destressit;
+package com.example.destressit.activities.therapist;
 
 import android.Manifest;
 import android.content.Context;
@@ -22,7 +22,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-public class HomeTherapistsFragment extends Fragment {
+import com.example.destressit.R;
+import com.example.destressit.core.OnBackPressed;
+
+public class HomeTherapistsFragment extends Fragment implements OnBackPressed {
 
     View root;
     LayoutInflater inflater;
@@ -106,5 +109,10 @@ public class HomeTherapistsFragment extends Fragment {
                 Toast.makeText(getContext(), "Permission DENIED", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return true;
     }
 }

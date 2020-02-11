@@ -1,4 +1,4 @@
-package com.example.destressit;
+package com.example.destressit.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.destressit.activities.user.NavigationActivity;
+import com.example.destressit.R;
+import com.example.destressit.activities.therapist.TherapistsNavActivity;
+import com.example.destressit.core.DatabaseHelper;
 import com.example.destressit.core.GenericUtils;
 import com.example.destressit.core.PreferenceUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -182,9 +186,9 @@ public class RegistrationActivity extends AppCompatActivity {
                             Log.d("TAG","Check2: " + type);
 
                             if(type.equalsIgnoreCase("user")){
-                                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
+                                startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
                             } else if (type.equalsIgnoreCase("therapist")){
-                                startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
+                                startActivity(new Intent(getApplicationContext(), TherapistsNavActivity.class));
                             } else {
                                 Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
                             }

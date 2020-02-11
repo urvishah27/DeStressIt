@@ -1,4 +1,4 @@
-package com.example.destressit;
+package com.example.destressit.core;
 
 import android.content.Context;
 import android.util.Log;
@@ -53,7 +53,6 @@ public class DatabaseHelper {
 
     public void updateUser(String uname, String uphone){
         DatabaseReference dbref = database.getReference("/users/" + getUKey());
-        DatabaseReference user = dbref.push();
 
         HashMap<String, Object> result = new HashMap<>();
         result.put("uname", uname);
@@ -94,12 +93,11 @@ public class DatabaseHelper {
     }
 
     public void updateTherapist(String uname, String uphone){
-        DatabaseReference dbref = database.getReference("/therapist/" + getTKey());
-        DatabaseReference user = dbref.push();
+        DatabaseReference dbref = database.getReference("/therapists/" + getTKey());
 
         HashMap<String, Object> result = new HashMap<>();
-        result.put("uname", uname);
-        result.put("uphone", uphone);
+        result.put("tname", uname);
+        result.put("tphone", uphone);
 
         dbref.updateChildren(result);
     }
@@ -108,24 +106,5 @@ public class DatabaseHelper {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-//    public String getType(final String email){
-//        DatabaseReference dbref = database.getReference("map/");
-//        dbref.addValueEventListener(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                String currentuser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-//                type = dataSnapshot.child(currentuser).child("type").getValue().toString();
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//        return type;
-//    }
 
 }

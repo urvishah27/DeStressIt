@@ -1,4 +1,4 @@
-package com.example.destressit;
+package com.example.destressit.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.destressit.core.PreferenceUtil;
+import com.example.destressit.R;
 
 public class MainActivity extends AppCompatActivity {
 

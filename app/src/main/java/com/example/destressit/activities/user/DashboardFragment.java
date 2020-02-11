@@ -1,4 +1,4 @@
-package com.example.destressit;
+package com.example.destressit.activities.user;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,9 +16,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.destressit.core.PreferenceUtil;
-
-import java.util.zip.Inflater;
+import com.example.destressit.ImageAdapter;
+import com.example.destressit.ImageAdapter1;
+import com.example.destressit.R;
+import com.example.destressit.core.DatabaseHelper;
+import com.example.destressit.core.OnBackPressed;
 
 
 /**
@@ -29,7 +31,7 @@ import java.util.zip.Inflater;
  * Use the {@link DashboardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements OnBackPressed {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -156,6 +158,11 @@ public class DashboardFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return true;
     }
 
     /**

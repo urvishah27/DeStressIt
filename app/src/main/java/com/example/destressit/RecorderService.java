@@ -1,5 +1,4 @@
 package com.example.destressit;
-import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
 import android.hardware.Camera;
@@ -8,19 +7,17 @@ import android.media.MediaRecorder;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.Toast;
+
+import com.example.destressit.activities.user.VideoDetection;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
-import static android.hardware.Camera.CameraInfo.CAMERA_FACING_BACK;
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT;
 
 public class RecorderService extends Service {
