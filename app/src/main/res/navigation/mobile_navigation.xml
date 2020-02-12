@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.destressit.HomeTherapistsFragment"
+        android:name="com.example.destressit.activities.therapist.HomeTherapistsFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
 
     <fragment
         android:id="@+id/navigation_therapists_profile"
-        android:name="com.example.destressit.ProfileTherapistsFragment"
+        android:name="com.example.destressit.activities.therapist.ProfileTherapistsFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_therapists_profile" />
 </navigation>

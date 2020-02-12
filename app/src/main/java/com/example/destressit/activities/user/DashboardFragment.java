@@ -1,4 +1,4 @@
-package com.example.destressit;
+package com.example.destressit.activities.user;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,14 +7,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.destressit.core.PreferenceUtil;
+import com.example.destressit.ImageAdapter;
+import com.example.destressit.ImageAdapter1;
+import com.example.destressit.R;
+import com.example.destressit.core.DatabaseHelper;
+import com.example.destressit.core.OnBackPressed;
 
 
 /**
@@ -25,7 +31,7 @@ import com.example.destressit.core.PreferenceUtil;
  * Use the {@link DashboardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements OnBackPressed {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -86,13 +92,46 @@ public class DashboardFragment extends Fragment {
         mViewPager1.setAdapter(adapterView1);
 
         TextView msg = (TextView) getView().findViewById(R.id.message);
-        msg.setText("Hello " + PreferenceUtil.getString(getContext(),"uname"));
+        msg.setText("Hello");
 
         getView().findViewById(R.id.startDetection).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getContext(), Questionnaire.class);
-                startActivity(i);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setCancelable(false);
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                builder.setView(dialogView);
+                TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                textView.setText("Please select your Gender for maximum accuracy");
+                dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+
+                acceptButton.setText("Male");
+                final AlertDialog alertDialog = builder.create();
+                acceptButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new DatabaseHelper(getContext()).getGender("Male");
+                        alertDialog.dismiss();
+                        Intent i = new Intent(getContext(), Questionnaire.class);
+                        startActivity(i);
+                    }
+                });
+                Button declineButton = (Button) dialogView.findViewById(R.id.decline);
+                declineButton.setText("Female");
+
+                declineButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new DatabaseHelper(getContext()).getGender("Female");
+                        alertDialog.dismiss();
+                        Intent i = new Intent(getContext(), Questionnaire.class);
+                        startActivity(i);
+                    }
+                });
+                alertDialog.show();
+
             }
         });
     }
@@ -119,6 +158,11 @@ public class DashboardFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return true;
     }
 
     /**

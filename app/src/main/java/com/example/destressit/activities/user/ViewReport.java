@@ -1,15 +1,13 @@
-package com.example.destressit;
+package com.example.destressit.activities.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 
-import java.util.Observable;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
+import com.example.destressit.activities.MainActivity;
+import com.example.destressit.R;
 
 public class ViewReport extends AppCompatActivity {
 
@@ -20,7 +18,7 @@ public class ViewReport extends AppCompatActivity {
     }
 
     public void onclick(View view){
-        Intent i = new Intent(this,MainActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
 }

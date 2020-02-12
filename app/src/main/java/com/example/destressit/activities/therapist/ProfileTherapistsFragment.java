@@ -1,16 +1,18 @@
-package com.example.destressit;
+package com.example.destressit.activities.therapist;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.destressit.activities.EditProfileActivity;
+import com.example.destressit.R;
+import com.example.destressit.activities.RegistrationActivity;
 import com.example.destressit.core.PreferenceUtil;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,7 +33,7 @@ public class ProfileTherapistsFragment extends Fragment {
         getView().findViewById(R.id.edit_therapist_icon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(),EditProfileActivity.class));
+                startActivity(new Intent(getContext(), EditProfileActivity.class));
             }
         });
         getView().findViewById(R.id.therapist_signOut).setOnClickListener(new View.OnClickListener() {
@@ -39,7 +41,7 @@ public class ProfileTherapistsFragment extends Fragment {
             public void onClick(View v) {
                 mAuth.signOut();
                 PreferenceUtil.clearAllPreferences(getContext());
-                startActivity(new Intent(getContext(),RegistrationActivity.class));
+                startActivity(new Intent(getContext(), RegistrationActivity.class));
             }
         });
     }

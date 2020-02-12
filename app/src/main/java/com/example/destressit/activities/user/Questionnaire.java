@@ -1,4 +1,4 @@
-package com.example.destressit;
+package com.example.destressit.activities.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.destressit.R;
 
 public class Questionnaire extends AppCompatActivity {
 

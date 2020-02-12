@@ -1,6 +1,4 @@
-package com.example.destressit;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.destressit.activities.user;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,8 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.Button;
+
+import com.example.destressit.R;
+import com.example.destressit.RecorderService;
 
 public class VideoDetection extends Activity implements SurfaceHolder.Callback {
     private static final String TAG = VideoDetection.class.getSimpleName();

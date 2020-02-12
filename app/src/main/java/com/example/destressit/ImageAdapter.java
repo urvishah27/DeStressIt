@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 public class ImageAdapter extends PagerAdapter {
     Context mContext;
 
-    ImageAdapter(Context context) {
+    public ImageAdapter(Context context) {
         this.mContext = context;
     }
 

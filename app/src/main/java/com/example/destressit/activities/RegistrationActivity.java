@@ -1,4 +1,4 @@
-package com.example.destressit;
+package com.example.destressit.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.destressit.activities.user.NavigationActivity;
+import com.example.destressit.R;
+import com.example.destressit.activities.therapist.TherapistsNavActivity;
+import com.example.destressit.core.DatabaseHelper;
 import com.example.destressit.core.GenericUtils;
 import com.example.destressit.core.PreferenceUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -31,6 +35,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -45,7 +56,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
     GenericUtils genericUtils = new GenericUtils();
     boolean newUser = false;
-    String type = "User";
+    String type;
+
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +92,8 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-
         mAuth = FirebaseAuth.getInstance();
+
     }
 
     // [START on_start_check_user]
@@ -89,7 +102,6 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        type = PreferenceUtil.getString(this,"utype");
         updateUI(currentUser);
     }
     // [END on_start_check_user]
@@ -160,11 +172,45 @@ public class RegistrationActivity extends AppCompatActivity {
             PreferenceUtil.setString(this,"uemail",user.getEmail());
             if(newUser)
                 startActivity(new Intent(getApplicationContext(),RegisterAsActivity.class));
-            else if(type.equals("User"))
-                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
             else{
-                startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
+                type = PreferenceUtil.getString(this,"utype");
+                Log.d("TAG","Check1: " + type);
+                if(type.equals("")){
+                    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("map/");
+                    dbref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String currentuser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+                            type = dataSnapshot.child(currentuser).child("type").getValue().toString();
+                            PreferenceUtil.setString(getApplicationContext(),"utype",type);
+                            Log.d("TAG","Check2: " + type);
+
+                            if(type.equalsIgnoreCase("user")){
+                                startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
+                            } else if (type.equalsIgnoreCase("therapist")){
+                                startActivity(new Intent(getApplicationContext(), TherapistsNavActivity.class));
+                            } else {
+                                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                } else{
+                    if(type.equalsIgnoreCase("user")){
+                        startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
+                    } else if (type.equalsIgnoreCase("Therapist")){
+                        startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
+
         }
     }
 
@@ -175,6 +221,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void signInClick(View v){
         signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+
     }
 
     private void signIn(String email, String password) {
