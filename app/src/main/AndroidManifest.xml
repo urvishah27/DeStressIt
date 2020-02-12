@@ -22,7 +22,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".Recommendation"
+            android:label="@string/title_activity_recommendation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <activity android:name=".activities.user.ViewReport"></activity>
+
 
         <service
             android:name=".RecorderService"
@@ -38,6 +45,7 @@
         <activity android:name=".activities.RegistrationActivity" />
         <activity android:name=".activities.user.NavigationActivity" />
         <activity android:name=".activities.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

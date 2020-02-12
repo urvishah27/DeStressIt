@@ -42,7 +42,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startDetection">
-
     </androidx.viewpager.widget.ViewPager>
 
     <androidx.viewpager.widget.ViewPager
@@ -53,7 +52,6 @@
         app:layout_constraintTop_toBottomOf="@id/ViewPager1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
     </androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Recommendation">
+
+    <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Recommendations"
+            android:textSize="35sp"
+            android:textStyle="bold|normal"
+            android:textColor="#000"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="400dp"
+            android:layout_marginTop="75dp"
+            android:background="#e6fff8">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="General Tips"
+                android:textSize="30sp"
+                android:textStyle="bold|normal"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Exercise your Mind, Body and Soul through some tips below"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                android:textColor="#000"/>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/ViewPager1"
+                android:layout_width="wrap_content"
+                android:layout_height="220dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp">
+            </androidx.viewpager.widget.ViewPager>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
+            android:layout_marginBottom="50dp"
+            android:background="#fff">
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="Recommended Activities"
+                android:textSize="30sp"
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold|normal"/>
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="Relaxation Activities"
+                android:textSize="25sp"
+                android:layout_marginBottom="15dp"
+                android:textStyle="bold|normal"/>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                  <!--  <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">-->
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Deep Breathing"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textColor="#fff"/>
+
+                        <!--<ToggleButton
+                            android:id="@+id/toggleButton"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ToggleButton" />
+
+
+                    </LinearLayout>-->
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="Deep Breathing can immediately help you to relaxand reduce productionof stgress hormones. In the long run, it can improve focus, brain functioning, and benefit the body's digestion and immune system"
+                        android:textAlignment="center"
+                        android:textSize="15sp"
+                        android:textStyle="normal"
+                        android:textColor="#fff"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical">
+
+                        <!--  <LinearLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:text="Guided Imagery"
+                            android:textAlignment="center"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:textColor="#fff"/>
+
+                        <!--<ToggleButton
+                            android:id="@+id/toggleButton"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ToggleButton" />
+
+
+                    </LinearLayout>-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="Guided Imagery is a good way to wind down and calm your body after a stressful event. Research shows that it positively impacts heart-rate, blood pressure and breathing."
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            android:textStyle="normal"
+                            android:textColor="#fff"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical">
+
+                        <!--  <LinearLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:text="Self-Compassion"
+                            android:textAlignment="center"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:textColor="#fff"/>
+
+                        <!--<ToggleButton
+                            android:id="@+id/toggleButton"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ToggleButton" />
+
+
+                    </LinearLayout>-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="You might find it more difficult to be kind to yourself as compared to others around you. Through self-compassion, you can feel more positive and even cope better in difficult situations"
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            android:textStyle="normal"
+                            android:textColor="#fff"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="Physical Activities"
+                android:textSize="25sp"
+                android:layout_marginBottom="15dp"
+                android:textStyle="bold|normal"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg4"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical">
+
+                        <!--  <LinearLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:text="Walking"
+                            android:textAlignment="center"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:textColor="#fff"/>
+
+                        <!--<ToggleButton
+                            android:id="@+id/toggleButton"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ToggleButton" />
+
+
+                    </LinearLayout>-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="Walk in nearby park or garden along with a colleague"
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            android:textStyle="normal"
+                            android:textColor="#fff"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="Walking is one of the most convenient ways to reduce stress as it triggers the release of endorphins that make you feel relaxed and even relieve pain. These endorphins induce a sense of calm and well-being"
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            android:textStyle="normal"
+                            android:textColor="#fff"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg4"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical">
+
+                        <!--  <LinearLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:text="Cycling"
+                            android:textAlignment="center"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:textColor="#fff"/>
+
+                        <!--<ToggleButton
+                            android:id="@+id/toggleButton"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ToggleButton" />
+
+
+                    </LinearLayout>-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="Try cycling in an open area with a colleague - it's fun to have some company"
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            android:textStyle="normal"
+                            android:textColor="#fff"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="Research shows that cycling reduces symptoms of stress and leaves you feeling more calm and focused."
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            android:textStyle="normal"
+                            android:textColor="#fff"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg4"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical">
+
+                        <!--  <LinearLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:text="Skipping rope"
+                            android:textAlignment="center"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:textColor="#fff"/>
+
+                        <!--<ToggleButton
+                            android:id="@+id/toggleButton"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ToggleButton" />
+
+                    </LinearLayout>-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="Try skipping with music when you are feeling stressed"
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            android:textStyle="normal"
+                            android:textColor="#fff"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="Skipping reduces stress by releasing endorphins which are not only pain relievers, but also create a sense of clam and well-being"
+                            android:textAlignment="center"
+                            android:textSize="15sp"
+                            android:textStyle="normal"
+                            android:textColor="#fff"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>
