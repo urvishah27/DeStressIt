@@ -4,7 +4,7 @@
     <item>
         <shape>
             <corners
-                android:radius="100pt">
+                android:radius="80pt">
             </corners>
 
             <padding android:bottom="3dp"
