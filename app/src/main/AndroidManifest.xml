@@ -24,7 +24,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".Recommendation"
+            android:name=".activities.user.Recommendation"
             android:label="@string/title_activity_recommendation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 

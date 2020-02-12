@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#fff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Recommendation">
+    tools:context=".activities.user.Recommendation">
 
     <RelativeLayout
     android:layout_width="wrap_content"

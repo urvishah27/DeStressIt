@@ -13,7 +13,7 @@ import com.example.destressit.R;
 public class ImageAdapter2 extends PagerAdapter {
     Context mContext;
 
-    ImageAdapter2(Context context) {
+    public ImageAdapter2(Context context) {
         this.mContext = context;
     }
 

@@ -1,8 +1,10 @@
-package com.example.destressit;
+package com.example.destressit.activities.user;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.destressit.ImageAdapter2;
+import com.example.destressit.R;
 import com.example.destressit.core.PreferenceUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
