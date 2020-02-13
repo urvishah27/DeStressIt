@@ -54,6 +54,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     name.setText(dname.getValue(String.class));
                     email.setText(demail.getValue(String.class));
+                    email.setEnabled(false);
                     phone.setText(dphone.getValue(String.class));
                 }
 

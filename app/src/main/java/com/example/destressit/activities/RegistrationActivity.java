@@ -201,10 +201,40 @@ public class RegistrationActivity extends AppCompatActivity {
                         }
                     });
                 } else{
-                    if(type.equalsIgnoreCase("user")){
-                        startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
+                    if(type.equalsIgnoreCase("user")) {
+                        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("users/" + new DatabaseHelper(this).getUKey());
+                        dbref.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                PreferenceUtil.setString(getApplicationContext(), "uname", dataSnapshot.child("uname").getValue().toString());
+                                PreferenceUtil.setString(getApplicationContext(), "uemail", dataSnapshot.child("uemail").getValue().toString());
+                                PreferenceUtil.setString(getApplicationContext(), "uphone", dataSnapshot.child("uphone").getValue().toString());
+                                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     } else if (type.equalsIgnoreCase("Therapist")){
-                        startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
+                        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("therapists/" + new DatabaseHelper(this).getTKey());
+                        dbref.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                PreferenceUtil.setString(getApplicationContext(), "uname", dataSnapshot.child("tname").getValue().toString());
+                                PreferenceUtil.setString(getApplicationContext(), "uemail", dataSnapshot.child("temail").getValue().toString());
+                                PreferenceUtil.setString(getApplicationContext(), "uphone", dataSnapshot.child("tphone").getValue().toString());
+                                startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     } else {
                         Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
                     }
