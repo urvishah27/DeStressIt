@@ -40,7 +40,6 @@ public class HomeTherapistsFragment extends Fragment implements OnBackPressed {
     LayoutInflater inflater;
     Button contact;
     private String[][] requests= new String[10][4];
-    private String[] report= new String[6];
     private static final int REQUEST_CALL=1;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -170,13 +169,7 @@ public class HomeTherapistsFragment extends Fragment implements OnBackPressed {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> keyChildren = dataSnapshot.getChildren();
-                report[0] = dataSnapshot.getKey();
-                report[1] = dataSnapshot.child("faceEmotion").getValue().toString();
-                report[2] = dataSnapshot.child("pupilDilation").getValue().toString();
-                report[3] = dataSnapshot.child("questionnaire").getValue().toString();
-                report[4] = dataSnapshot.child("voiceMeasure").getValue().toString();
-                report[5] = dataSnapshot.child("stressPercent").getValue().toString();
+                String report = dataSnapshot.child("stressPercent").getValue().toString();
                 Intent i = new Intent(getContext(), ViewReport.class);
                 i.putExtra("reportValues",report);
                 startActivity(i);
