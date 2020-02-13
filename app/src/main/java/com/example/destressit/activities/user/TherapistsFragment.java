@@ -14,15 +14,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.destressit.R;
+import com.example.destressit.activities.EditProfileActivity;
+import com.example.destressit.core.DatabaseHelper;
+import com.example.destressit.core.PreferenceUtil;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 
 /**
@@ -44,6 +50,7 @@ public class TherapistsFragment extends Fragment {
     private String mParam2;
     private String[][] therapists= new String[10][4];
     View root;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     private OnFragmentInteractionListener mListener;
 
@@ -72,13 +79,14 @@ public class TherapistsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
+
             DatabaseReference dbref = database.getReference("therapists/");
 
             dbref.addValueEventListener(new ValueEventListener() {
@@ -174,8 +182,8 @@ public class TherapistsFragment extends Fragment {
     }
 
     public void addLayout(int no,final String key, final String name, final String email,final String phone) {
+
         if (no == 0) {
-            Toast.makeText(getContext(),"1",Toast.LENGTH_SHORT).show();
             TextView nameText = (TextView) root.findViewById(R.id.nameText1);
             nameText.setText(name);
             TextView emailText = (TextView) root.findViewById(R.id.emailText1);
@@ -184,15 +192,57 @@ public class TherapistsFragment extends Fragment {
             phoneText.setText("Phone: " + phone);
             CardView cardView = (CardView) root.findViewById(R.id.card_view1);
             cardView.setVisibility(View.VISIBLE);
-            Button reqApp = (Button)root.findViewById(R.id.myButton1);
+            final Button reqApp = (Button)root.findViewById(R.id.myButton1);
             reqApp.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
 
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
+        }
 
-        } else if (no == 1) {
+        else if (no == 1) {
 
             TextView nameText = (TextView) root.findViewById(R.id.nameText2);
             nameText.setText(name);
@@ -206,6 +256,47 @@ public class TherapistsFragment extends Fragment {
             reqApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
+
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
 
                 }
             });
@@ -224,7 +315,47 @@ public class TherapistsFragment extends Fragment {
             reqApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
 
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
 
@@ -242,7 +373,47 @@ public class TherapistsFragment extends Fragment {
             reqApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
 
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
 
@@ -260,7 +431,47 @@ public class TherapistsFragment extends Fragment {
             reqApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
 
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
 
@@ -278,7 +489,47 @@ public class TherapistsFragment extends Fragment {
             reqApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
 
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
 
@@ -296,7 +547,47 @@ public class TherapistsFragment extends Fragment {
             reqApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
 
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
 
@@ -314,7 +605,47 @@ public class TherapistsFragment extends Fragment {
             reqApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
 
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
 
@@ -332,7 +663,47 @@ public class TherapistsFragment extends Fragment {
             reqApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
 
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
 
@@ -350,12 +721,53 @@ public class TherapistsFragment extends Fragment {
             reqApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (PreferenceUtil.getString(getContext(), "uname").equals("") || PreferenceUtil.getString(getContext(), "uphone").equals("")) {
 
+                        LayoutInflater inflater;
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setCancelable(false);
+                        inflater = (LayoutInflater) root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                        builder.setView(dialogView);
+
+                        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                        textView.setText("Please fill your information in the Edit Profile section");
+                        dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+                        Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+                        acceptButton.setText("Go to Edit Profile");
+
+                        final AlertDialog alertDialog = builder.create();
+                        acceptButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+
+                    else {
+                        DatabaseReference dbref = database.getReference("therapists/" + key + "/requests/");
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("uname", PreferenceUtil.getString(getContext(), "uname"));
+                        result.put("uemail", PreferenceUtil.getString(getContext(), "uemail"));
+                        result.put("uphone", PreferenceUtil.getString(getContext(), "uphone"));
+
+                        dbref.child(databaseHelper.getUKey()).updateChildren(result);
+
+                        Toast .makeText(getContext(),"Your request has been send",Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
 
         }
     }
+
 
 
 }

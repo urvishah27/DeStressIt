@@ -57,6 +57,8 @@ public class DatabaseHelper {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uname", uname);
         result.put("uphone", uphone);
+        PreferenceUtil.setString(context,"uname",uname);
+        PreferenceUtil.setString(context,"uphone",uphone);
 
         dbref.updateChildren(result);
     }
@@ -98,6 +100,7 @@ public class DatabaseHelper {
         HashMap<String, Object> result = new HashMap<>();
         result.put("tname", uname);
         result.put("tphone", uphone);
+        PreferenceUtil.setString(context,"uphone",uphone);
 
         dbref.updateChildren(result);
     }
