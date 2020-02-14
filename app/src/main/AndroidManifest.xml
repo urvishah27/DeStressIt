@@ -26,9 +26,11 @@
         <activity
             android:name=".activities.user.Recommendation"
             android:label="@string/title_activity_recommendation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
-        <activity android:name=".activities.user.ViewReport"></activity>
+        <activity android:name=".activities.user.ViewReport"
+            android:screenOrientation="portrait"></activity>
 
 
         <service
@@ -36,15 +38,31 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activities.user.VideoDetection" />
-        <activity android:name=".activities.user.Questionnaire"></activity>
+        <activity android:name=".activities.user.VideoDetection"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.user.Questionnaire"
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
-            android:name=".activities.therapist.TherapistsNavActivity"></activity>
-        <activity android:name=".activities.RegisterAsActivity" />
-        <activity android:name=".activities.EditProfileActivity" />
-        <activity android:name=".activities.RegistrationActivity" />
-        <activity android:name=".activities.user.NavigationActivity" />
-        <activity android:name=".activities.MainActivity">
+            android:name=".activities.therapist.TherapistsNavActivity"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".activities.RegisterAsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.EditProfileActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.RegistrationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.user.NavigationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.MainActivity"
+            android:screenOrientation="portrait"
+            >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
