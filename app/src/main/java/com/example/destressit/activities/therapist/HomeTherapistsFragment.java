@@ -169,7 +169,7 @@ public class HomeTherapistsFragment extends Fragment implements OnBackPressed {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String report = dataSnapshot.child("stressPercent").getValue().toString();
+                Float report = (float)dataSnapshot.child("stressPercent").getValue();
                 Intent i = new Intent(getContext(), ViewReport.class);
                 i.putExtra("reportValues",report);
                 startActivity(i);

@@ -105,7 +105,9 @@ public class ProfileFragment extends Fragment {
         getView().findViewById(R.id.viewHistory).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Coming Soon", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getContext(), ViewReport.class);
+                i.putExtra("reportValues", PreferenceUtil.getFloat(getContext(),"quizStress"));
+                startActivity(i);
             }
         });
     }

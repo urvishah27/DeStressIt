@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -17,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.destressit.ImageAdapter;
-import com.example.destressit.ImageAdapter1;
 import com.example.destressit.R;
 import com.example.destressit.core.DatabaseHelper;
 import com.example.destressit.core.OnBackPressed;
@@ -83,13 +81,10 @@ public class DashboardFragment extends Fragment implements OnBackPressed {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
         ViewPager mViewPager = (ViewPager) getView().findViewById(R.id.ViewPager1);
         ImageAdapter adapterView = new ImageAdapter(getContext());
         mViewPager.setAdapter(adapterView);
-
-        ViewPager mViewPager1 = (ViewPager) getView().findViewById(R.id.ViewPager2);
-        ImageAdapter1 adapterView1 = new ImageAdapter1(getContext());
-        mViewPager1.setAdapter(adapterView1);
 
         TextView msg = (TextView) getView().findViewById(R.id.message);
         msg.setText("Hello");
@@ -120,7 +115,6 @@ public class DashboardFragment extends Fragment implements OnBackPressed {
                 });
                 Button declineButton = (Button) dialogView.findViewById(R.id.decline);
                 declineButton.setText("Female");
-
                 declineButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -132,6 +126,13 @@ public class DashboardFragment extends Fragment implements OnBackPressed {
                 });
                 alertDialog.show();
 
+            }
+        });
+
+        getView().findViewById(R.id.viewRecomm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), Recommendation.class));
             }
         });
     }

@@ -1,23 +1,12 @@
 package com.example.destressit.activities.user;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.destressit.ImageAdapter2;
+import com.example.destressit.ImageAdapter;
 import com.example.destressit.R;
-import com.example.destressit.core.PreferenceUtil;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.NestedScrollingChild;
-import androidx.core.widget.NestedScrollView;
 import androidx.viewpager.widget.ViewPager;
-
-import android.view.View;
-import android.widget.TextView;
 
 public class Recommendation extends AppCompatActivity {
 
@@ -29,7 +18,7 @@ public class Recommendation extends AppCompatActivity {
         setContentView(R.layout.activity_recommendation);
 
         ViewPager mViewPager = (ViewPager)findViewById(R.id.ViewPager1);
-        ImageAdapter2 adapterView = new ImageAdapter2(this);
+        ImageAdapter adapterView = new ImageAdapter(this);
         mViewPager.setAdapter(adapterView);
 
     }

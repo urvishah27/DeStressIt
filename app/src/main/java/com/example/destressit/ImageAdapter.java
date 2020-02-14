@@ -2,16 +2,14 @@ package com.example.destressit;
 
 import android.content.Context;
 import android.view.View;
-
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-/**
- * Created by urvi on 26/8/19.
- */
+import com.example.destressit.R;
+
 public class ImageAdapter extends PagerAdapter {
     Context mContext;
 
@@ -25,7 +23,7 @@ public class ImageAdapter extends PagerAdapter {
     }
 
     private int[] sliderImageId = new int[]{
-            R.drawable.activity2, R.drawable.activity3, R.drawable.activity4, R.drawable.activity1
+            R.drawable.tip1, R.drawable.tip2, R.drawable.tip3, R.drawable.tip4
     };
 
     @Override

@@ -33,5 +33,21 @@
             android:text="Please Speak After the Beep: The dog is barking"
             android:textColor="#01A3BD"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/nextResult"
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_dark_background"
+            android:clickable="true"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/textView"
+            android:enabled="false"
+            android:layout_centerHorizontal="true"
+            android:onClick="getResult"
+            android:text="Next"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"/>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

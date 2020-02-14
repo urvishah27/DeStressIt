@@ -34,24 +34,61 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/ViewPager1"
+    <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/startDetection"
+        android:background="#e6fff8">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="General Tips"
+            android:textSize="30sp"
+            android:textStyle="bold|normal"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Exercise your Mind, Body and Soul through some tips below"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textColor="#000"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/ViewPager1"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp">
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/viewRecomm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/message"
+        android:background="@drawable/background"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:text="View More"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/ll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startDetection">
-    </androidx.viewpager.widget.ViewPager>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/ViewPager2"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/ViewPager1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </androidx.viewpager.widget.ViewPager>
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

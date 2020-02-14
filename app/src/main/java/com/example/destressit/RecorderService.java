@@ -92,9 +92,6 @@ public class RecorderService extends Service {
 
             mServiceCamera.unlock();
 
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmmssddMMYY");
-            LocalDateTime now = LocalDateTime.now();
-
             mMediaRecorder = new MediaRecorder();
             mMediaRecorder.setCamera(mServiceCamera);
             mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -102,7 +99,7 @@ public class RecorderService extends Service {
             mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
             mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-            mMediaRecorder.setOutputFile(Environment.getExternalStorageDirectory().getPath() + "/"+dtf.format(now)+".mp4");
+            mMediaRecorder.setOutputFile(Environment.getExternalStorageDirectory().getPath() + "/video.mp4");
 //            mMediaRecorder.setPreviewDisplay(mSurfaceHolder.getSurface());
 
             mMediaRecorder.prepare();

@@ -7,13 +7,12 @@
     android:background="@color/white"
     tools:context=".activities.MainActivity">
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_horizontal"
         android:textAlignment="center"
@@ -23,9 +22,9 @@
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="270dp" >
+        android:layout_marginBottom="200dp" >
 
         <RadioButton
             android:id="@+id/radioButton3"
