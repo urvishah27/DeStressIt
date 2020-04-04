@@ -174,6 +174,17 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),RegisterAsActivity.class));
             else{
                 type = PreferenceUtil.getString(this,"utype");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setCancelable(false);
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+                builder.setView(dialogView);
+                TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+                textView.setText("Please wait until the data loads");
+                final AlertDialog alert = builder.create();
+                alert.show();
+
                 Log.d("TAG","Check1: " + type);
                 if(type.equals("")){
                     DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("map/");
@@ -186,10 +197,13 @@ public class RegistrationActivity extends AppCompatActivity {
                             Log.d("TAG","Check2: " + type);
 
                             if(type.equalsIgnoreCase("user")){
+                                alert.cancel();
                                 startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
                             } else if (type.equalsIgnoreCase("therapist")){
+                                alert.cancel();
                                 startActivity(new Intent(getApplicationContext(), TherapistsNavActivity.class));
                             } else {
+                                alert.cancel();
                                 Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
                             }
 
@@ -209,8 +223,10 @@ public class RegistrationActivity extends AppCompatActivity {
                                 PreferenceUtil.setString(getApplicationContext(), "uname", dataSnapshot.child("uname").getValue().toString());
                                 PreferenceUtil.setString(getApplicationContext(), "uemail", dataSnapshot.child("uemail").getValue().toString());
                                 PreferenceUtil.setString(getApplicationContext(), "uphone", dataSnapshot.child("uphone").getValue().toString());
-                                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
 
+                                alert.cancel();
+
+                                startActivity(new Intent(getApplicationContext(),NavigationActivity.class));
                             }
 
                             @Override
@@ -226,8 +242,10 @@ public class RegistrationActivity extends AppCompatActivity {
                                 PreferenceUtil.setString(getApplicationContext(), "uname", dataSnapshot.child("tname").getValue().toString());
                                 PreferenceUtil.setString(getApplicationContext(), "uemail", dataSnapshot.child("temail").getValue().toString());
                                 PreferenceUtil.setString(getApplicationContext(), "uphone", dataSnapshot.child("tphone").getValue().toString());
-                                startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
 
+                                alert.cancel();
+
+                                startActivity(new Intent(getApplicationContext(),TherapistsNavActivity.class));
                             }
 
                             @Override
@@ -236,6 +254,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             }
                         });
                     } else {
+                        alert.cancel();
                         Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
                     }
                 }

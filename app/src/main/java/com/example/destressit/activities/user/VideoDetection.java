@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.destressit.R;
 import com.example.destressit.RecorderService;
+import com.example.destressit.core.DatabaseHelper;
 import com.example.destressit.core.PreferenceUtil;
 
 public class VideoDetection extends Activity implements SurfaceHolder.Callback {
@@ -192,7 +193,7 @@ public class VideoDetection extends Activity implements SurfaceHolder.Callback {
 
     public void getResult(View view){
         Intent i = new Intent(this, ViewReport.class);
-        i.putExtra("reportValues", PreferenceUtil.getFloat(this,"quizStress"));
+        i.putExtra("detectionCheck",true);
         startActivity(i);
     }
 

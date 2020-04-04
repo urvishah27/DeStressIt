@@ -106,7 +106,6 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), ViewReport.class);
-                i.putExtra("reportValues", PreferenceUtil.getFloat(getContext(),"quizStress"));
                 startActivity(i);
             }
         });

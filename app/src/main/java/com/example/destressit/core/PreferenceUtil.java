@@ -32,6 +32,16 @@ public class PreferenceUtil {
         return sp.getLong(key, defaultValue);
     }
 
+    public static void setDouble(Context context, String key, long value) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        sp.edit().putLong(key, Double.doubleToRawLongBits(value)).apply();
+    }
+
+    public static double getDouble(Context context, String key, long defaultValue) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return Double.longBitsToDouble(sp.getLong(key, Double.doubleToLongBits(defaultValue)));
+    }
+
     public static void setBoolean(Context context, String key, boolean value) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         sp.edit().putBoolean(key, value).apply();

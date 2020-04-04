@@ -63,7 +63,7 @@ public class DatabaseHelper {
         dbref.updateChildren(result);
     }
 
-    public void getGender(String gender){
+    public void setGender(String gender){
         DatabaseReference dbref = database.getReference("/users/" + getUKey());
         dbref.child("gender").setValue(gender);
     }

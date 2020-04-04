@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.destressit.R;
+import com.example.destressit.core.DatabaseHelper;
 import com.example.destressit.core.PreferenceUtil;
 
 import java.util.ArrayList;
@@ -175,10 +176,8 @@ public class Questionnaire extends AppCompatActivity {
     }
 
     public void endTask(){
-        float stressPercent = (float)((c*0.75+d)*100)/i;
-        Log.d("CHECK4","stress: "+ stressPercent);
-        PreferenceUtil.setFloat(this,"quizStress",stressPercent);
+        Long stressPercent = (long)((c*0.75+d)*100)/i;
+        PreferenceUtil.setLong(this,"quizStress",stressPercent);
         startActivity(new Intent(this,VideoDetection.class));
     }
-
 }

@@ -107,7 +107,7 @@ public class DashboardFragment extends Fragment implements OnBackPressed {
                 acceptButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new DatabaseHelper(getContext()).getGender("Male");
+                        new DatabaseHelper(getContext()).setGender("Male");
                         alertDialog.dismiss();
                         Intent i = new Intent(getContext(), Questionnaire.class);
                         startActivity(i);
@@ -118,7 +118,7 @@ public class DashboardFragment extends Fragment implements OnBackPressed {
                 declineButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new DatabaseHelper(getContext()).getGender("Female");
+                        new DatabaseHelper(getContext()).setGender("Female");
                         alertDialog.dismiss();
                         Intent i = new Intent(getContext(), Questionnaire.class);
                         startActivity(i);

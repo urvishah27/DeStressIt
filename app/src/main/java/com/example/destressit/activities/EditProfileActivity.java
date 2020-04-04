@@ -1,12 +1,16 @@
 package com.example.destressit.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.destressit.activities.user.NavigationActivity;
@@ -36,6 +40,16 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+        builder.setView(dialogView);
+        TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+        textView.setText("Please wait until the data loads");
+        final AlertDialog alert = builder.create();
+        alert.show();
+
         name = findViewById(R.id.nameEdit);
         email = findViewById(R.id.emailEdit);
         phone = findViewById(R.id.phoneEdit);
@@ -56,6 +70,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     email.setText(demail.getValue(String.class));
                     email.setEnabled(false);
                     phone.setText(dphone.getValue(String.class));
+
+                    alert.cancel();
                 }
 
                 @Override
@@ -76,6 +92,9 @@ public class EditProfileActivity extends AppCompatActivity {
                     name.setText(dname.getValue(String.class));
                     email.setText(demail.getValue(String.class));
                     phone.setText(dphone.getValue(String.class));
+
+                    alert.cancel();
+
                 }
 
                 @Override
