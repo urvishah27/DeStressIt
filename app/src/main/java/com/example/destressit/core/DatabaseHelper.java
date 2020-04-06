@@ -34,11 +34,17 @@ public class DatabaseHelper {
 
         DatabaseReference dbref = database.getReference("/users");
         DatabaseReference dbMap = database.getReference("/map");
+        HashMap<String, Object> reports = new HashMap<>();
+        reports.put("audioresult","10000");
+        reports.put("pupil_mm","10000");
+        reports.put("video_negative","10000");
+        reports.put("video_positive","10000");
 
         HashMap<String, Object> result = new HashMap<>();
         result.put("uname", uname);
         result.put("uemail", uemail);
         result.put("uphone", uphone);
+        result.put("reports",reports);
 
         HashMap<String, Object> result1 = new HashMap<>();
         result1.put("email", uemail);
@@ -66,6 +72,7 @@ public class DatabaseHelper {
     public void getGender(String gender){
         DatabaseReference dbref = database.getReference("/users/" + getUKey());
         dbref.child("gender").setValue(gender);
+        PreferenceUtil.setString(context,"gender",gender);
     }
 
     public String getUKey(){
