@@ -11,10 +11,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -119,7 +121,36 @@ public class VideoDetection extends Activity implements SurfaceHolder.Callback {
             }
         }else {
             // Do something, when permissions are already granted
-            cameraFunction();
+            final AlertDialog.Builder newBuilder = new AlertDialog.Builder(this);
+            newBuilder.setCancelable(false);
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View dialogView = inflater.inflate(R.layout.dialog_alert, null);
+            newBuilder.setView(dialogView);
+            TextView textView = (TextView) dialogView.findViewById(R.id.dialog_message);
+            textView.setText("Please keep your phone in line with your face to enable us to record your video and audio");
+            dialogView.findViewById(R.id.dialog_ll).setVisibility(View.VISIBLE);
+            Button acceptButton = (Button) dialogView.findViewById(R.id.accept);
+
+            acceptButton.setText("Start");
+            final AlertDialog alertDialog = newBuilder.create();
+            acceptButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    cameraFunction();
+                }
+            });
+            Button declineButton = (Button) dialogView.findViewById(R.id.decline);
+            declineButton.setText("No");
+            declineButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    Intent i = new Intent(getApplicationContext(), NavigationActivity.class);
+                    startActivity(i);
+                }
+            });
+            alertDialog.show();
         }
     }
 

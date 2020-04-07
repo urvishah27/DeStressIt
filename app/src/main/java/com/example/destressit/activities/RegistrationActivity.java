@@ -30,6 +30,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -188,7 +189,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 Log.d("TAG","Check1: " + type);
                 if(type.equals("")){
                     DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("map/");
-                    dbref.addValueEventListener(new ValueEventListener() {
+                    dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String currentuser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
@@ -217,7 +218,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 } else{
                     if(type.equalsIgnoreCase("user")) {
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("users/" + new DatabaseHelper(this).getUKey());
-                        dbref.addValueEventListener(new ValueEventListener() {
+                        dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 PreferenceUtil.setString(getApplicationContext(), "uname", dataSnapshot.child("uname").getValue().toString());
@@ -236,7 +237,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         });
                     } else if (type.equalsIgnoreCase("Therapist")){
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("therapists/" + new DatabaseHelper(this).getTKey());
-                        dbref.addValueEventListener(new ValueEventListener() {
+                        dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 PreferenceUtil.setString(getApplicationContext(), "uname", dataSnapshot.child("tname").getValue().toString());

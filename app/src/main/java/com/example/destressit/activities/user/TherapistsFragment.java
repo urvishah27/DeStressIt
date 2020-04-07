@@ -89,7 +89,7 @@ public class TherapistsFragment extends Fragment {
 
             DatabaseReference dbref = database.getReference("therapists/");
 
-            dbref.addValueEventListener(new ValueEventListener() {
+            dbref.addListenerForSingleValueEvent(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

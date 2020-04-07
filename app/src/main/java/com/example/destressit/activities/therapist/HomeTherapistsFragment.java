@@ -56,7 +56,7 @@ public class HomeTherapistsFragment extends Fragment implements OnBackPressed {
 
         DatabaseReference dbref = database.getReference("therapists/" + new DatabaseHelper(getContext()).getTKey() + "/requests");
 
-        dbref.addValueEventListener(new ValueEventListener() {
+        dbref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -166,11 +166,11 @@ public class HomeTherapistsFragment extends Fragment implements OnBackPressed {
         Toast.makeText(getContext(),key,Toast.LENGTH_LONG).show();
         DatabaseReference dbref = database.getReference("users/" + key + "/reports");
 
-        dbref.addValueEventListener(new ValueEventListener() {
+        dbref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Double report = (Double)dataSnapshot.child("stressPercent").getValue();
+                Long report = (Long) dataSnapshot.child("stressPercent").getValue();
                 Intent i = new Intent(getContext(), ViewReport.class);
                 i.putExtra("reportValues",report);
                 startActivity(i);
