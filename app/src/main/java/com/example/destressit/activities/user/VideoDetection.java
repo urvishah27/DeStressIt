@@ -37,6 +37,7 @@ import okhttp3.Response;
 
 import com.example.destressit.R;
 import com.example.destressit.RecorderService;
+import com.example.destressit.core.DatabaseHelper;
 import com.example.destressit.core.PreferenceUtil;
 
 import java.io.File;
@@ -371,7 +372,7 @@ public class VideoDetection extends Activity implements SurfaceHolder.Callback {
         }
 
         Intent i = new Intent(this, ViewReport.class);
-        i.putExtra("reportValues", PreferenceUtil.getFloat(this,"quizStress"));
+        i.putExtra("detectionCheck",true);
         startActivity(i);
     }
 

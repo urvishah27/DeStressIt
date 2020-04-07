@@ -163,13 +163,14 @@ public class HomeTherapistsFragment extends Fragment implements OnBackPressed {
     }
 
     private void viewReport(String key){
-        DatabaseReference dbref = database.getReference("users/" + key + "/report");
+        Toast.makeText(getContext(),key,Toast.LENGTH_LONG).show();
+        DatabaseReference dbref = database.getReference("users/" + key + "/reports");
 
         dbref.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Float report = (float)dataSnapshot.child("stressPercent").getValue();
+                Double report = (Double)dataSnapshot.child("stressPercent").getValue();
                 Intent i = new Intent(getContext(), ViewReport.class);
                 i.putExtra("reportValues",report);
                 startActivity(i);
@@ -184,7 +185,6 @@ public class HomeTherapistsFragment extends Fragment implements OnBackPressed {
 
     public void addLayout(int no,final String key, final String name, final String email,final String phone) {
         if (no == 0) {
-            Toast.makeText(getContext(),"1",Toast.LENGTH_SHORT).show();
             TextView nameText = (TextView) root.findViewById(R.id.nameText1);
             nameText.setText(name);
             TextView emailText = (TextView) root.findViewById(R.id.emailText1);
