@@ -100,6 +100,7 @@ public class RecorderService extends Service {
             mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
             mMediaRecorder.setOutputFile(Environment.getExternalStorageDirectory().getPath() + "/video.mp4");
+            Log.e("path",Environment.getExternalStorageDirectory().getPath() + "/video.mp4");
 //            mMediaRecorder.setPreviewDisplay(mSurfaceHolder.getSurface());
 
             mMediaRecorder.prepare();

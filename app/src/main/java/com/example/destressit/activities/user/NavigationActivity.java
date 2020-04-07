@@ -3,6 +3,7 @@ package com.example.destressit.activities.user;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,6 +11,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import com.example.destressit.R;
 import com.example.destressit.activities.MainActivity;
@@ -19,13 +27,13 @@ import com.example.destressit.activities.user.TherapistsFragment;
 import com.example.destressit.core.OnBackPressed;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.IOException;
 import java.util.List;
 
 
 public class NavigationActivity extends AppCompatActivity implements ProfileFragment.OnFragmentInteractionListener, DashboardFragment.OnFragmentInteractionListener, TherapistsFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -49,6 +57,7 @@ public class NavigationActivity extends AppCompatActivity implements ProfileFrag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
@@ -57,6 +66,7 @@ public class NavigationActivity extends AppCompatActivity implements ProfileFrag
 
         loadFragment(new DashboardFragment());
     }
+
 
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
