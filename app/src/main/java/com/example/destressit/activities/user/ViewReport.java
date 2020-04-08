@@ -41,11 +41,11 @@ public class ViewReport extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent.hasExtra("reportValues")) {
-            reportValues = intent.getDoubleExtra("reportValues", 0);
+            reportValues = intent.getLongExtra("reportValues", 0);
             ProgressBar progressBar = findViewById(R.id.progressBar);
-            progressBar.setProgress((int) Math.round((Double) reportValues));
+            progressBar.setProgress((int) Math.round((Long) reportValues));
             TextView stressPercent = findViewById(R.id.stressPercent);
-            stressPercent.setText(Math.round((Double) reportValues) + " %");
+            stressPercent.setText(Math.round((Long) reportValues) + " %");
         } else {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -66,7 +66,7 @@ public class ViewReport extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Long audioResult = (Long) dataSnapshot.child("audioresult").getValue();
-                        Double pupilResult = (Double) dataSnapshot.child("pupil_mm").getValue();
+                        Long pupilResult = (Long) dataSnapshot.child("pupil_mm").getValue();
                         Long negVideo = (Long) dataSnapshot.child("video_negative").getValue();
 
                         Long questionnaireResult = PreferenceUtil.getLong(getApplicationContext(),"quizStress",0);
@@ -75,9 +75,9 @@ public class ViewReport extends AppCompatActivity {
                         reportValues = (audioResult + pupilResult + negVideo + questionnaireResult) / 4;
 
                         ProgressBar progressBar = findViewById(R.id.progressBar);
-                        progressBar.setProgress((int) Math.round((Double) reportValues));
+                        progressBar.setProgress((int) Math.round((Long) reportValues));
                         TextView stressPercent = findViewById(R.id.stressPercent);
-                        stressPercent.setText(Math.round((Double) reportValues) + " %");
+                        stressPercent.setText(Math.round((Long) reportValues) + " %");
 
                         alert.cancel();
 
@@ -97,11 +97,11 @@ public class ViewReport extends AppCompatActivity {
 
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        reportValues = (double) dataSnapshot.child("stressPercent").getValue();
+                        reportValues = (Long) dataSnapshot.child("stressPercent").getValue();
                         ProgressBar progressBar = findViewById(R.id.progressBar);
-                        progressBar.setProgress((int) Math.round((Double) reportValues));
+                        progressBar.setProgress((int) Math.round((Long) reportValues));
                         TextView stressPercent = findViewById(R.id.stressPercent);
-                        stressPercent.setText(Math.round((Double) reportValues) + " %");
+                        stressPercent.setText(Math.round((Long) reportValues) + " %");
 
                         alert.cancel();
                     }
