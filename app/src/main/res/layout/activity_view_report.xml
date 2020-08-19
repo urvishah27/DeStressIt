@@ -43,6 +43,7 @@
         android:background="@drawable/background"
         android:clickable="true"
         android:onClick="getRecomm"
+        android:visibility="gone"
         android:text="Get Recommendations"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -86,7 +87,7 @@
         android:textSize="20dp"
         android:fontWeight="50"
         android:layout_centerHorizontal="true"
-        android:text="TextView" />
+        android:text="0 %" />
 
 
 </RelativeLayout>

@@ -58,7 +58,7 @@ public class EditProfileActivity extends AppCompatActivity {
         Toast.makeText(this,type,Toast.LENGTH_SHORT).show();
         if(type.equalsIgnoreCase("user")){
             DatabaseReference dbref = database.getReference("users/" + dbHelp.getUKey());
-            dbref.addValueEventListener(new ValueEventListener() {
+            dbref.addListenerForSingleValueEvent(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -81,7 +81,7 @@ public class EditProfileActivity extends AppCompatActivity {
             });
         } else {
             DatabaseReference dbref = database.getReference("therapists/" + dbHelp.getTKey());
-            dbref.addValueEventListener(new ValueEventListener() {
+            dbref.addListenerForSingleValueEvent(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
